@@ -1,34 +1,27 @@
 /**
- * Pure-CSS infinite ticker. No JS, no scroll listener, so it costs nothing on
+ * Pure-CSS infinite ticker — no JS, no scroll listener, so it costs nothing on
  * the catalogue tier. Pauses on hover and stops entirely under reduced motion.
  * Replaces the deprecated <marquee> element on the legacy site.
  */
 export function Marquee({ items }: { items: string[] }) {
   const track = (
-    <ul className="marquee-track flex shrink-0 items-center gap-10 pr-10">
+    <ul className="marquee-track flex shrink-0 items-center gap-8 pr-8">
       {items.map((t) => (
-        <li key={t} className="flex items-center gap-10">
+        <li key={t} className="flex items-center gap-8">
           <span
-            className="uppercase"
-            style={{
-              fontVariationSettings: '"wdth" 122, "wght" 800',
-              letterSpacing: "-0.04em",
-              fontSize: "clamp(1.3rem, 3.2vw, 2.4rem)",
-            }}
+            className="whitespace-nowrap text-[12.5px] uppercase text-text-2"
+            style={{ fontVariationSettings: '"wdth" 100, "wght" 620', letterSpacing: "0.14em" }}
           >
             {t}
           </span>
-          <span className="h-2 w-2 shrink-0 rounded-full bg-signal" aria-hidden />
+          <span className="h-1 w-1 shrink-0 rounded-full bg-brand" aria-hidden />
         </li>
       ))}
     </ul>
   );
 
   return (
-    <div
-      className="marquee flex overflow-hidden border-y border-rule py-3"
-      aria-hidden
-    >
+    <div className="marquee flex overflow-hidden border-b border-border bg-bg py-3" aria-hidden>
       {track}
       {track}
     </div>

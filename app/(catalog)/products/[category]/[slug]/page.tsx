@@ -49,31 +49,31 @@ export default async function ProductPage({ params }: Props) {
   };
 
   return (
-    <div className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(40px,7vh,90px)]">
+    <div className="mx-auto max-w-[1320px] px-6 py-10 lg:py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <nav aria-label="Breadcrumb" className="t-data mb-8 text-ink-mute">
-        <Link href="/" className="hover:text-ink">
+      <nav aria-label="Breadcrumb" className="data mb-8 text-text-2">
+        <Link href="/" className="hover:text-text">
           Home
         </Link>
         <span aria-hidden> / </span>
-        <Link href="/products" className="hover:text-ink">
+        <Link href="/products" className="hover:text-text">
           Products
         </Link>
         <span aria-hidden> / </span>
-        <Link href={`/products/${p.category}`} className="hover:text-ink">
+        <Link href={`/products/${p.category}`} className="hover:text-text">
           {cat?.title}
         </Link>
         <span aria-hidden> / </span>
-        <span className="text-ink">{p.code}</span>
+        <span className="text-text">{p.code}</span>
       </nav>
 
-      <div className="grid gap-[clamp(24px,4vw,64px)] lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         {/* image */}
-        <div className="plate group relative aspect-square overflow-hidden border border-rule">
+        <div className="plate group relative aspect-square overflow-hidden border border-border">
           {p.image ? (
             <>
               <Image
@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: Props) {
             </>
           ) : (
             <div className="flex h-full items-center justify-center">
-              <span className="t-data text-ink-mute">
+              <span className="data text-text-2">
                 Photography being migrated — {p.code}
               </span>
             </div>
@@ -110,34 +110,24 @@ export default async function ProductPage({ params }: Props) {
 
         {/* detail */}
         <div>
-          <p className="t-label" style={{ color: accentFor(p.category) }}>
+          <p className="eyebrow-muted" style={{ color: accentFor(p.category) }}>
             {cat?.title}
           </p>
-          <h1
-            className="mt-3 uppercase"
-            style={{
-              fontVariationSettings: '"wdth" 118, "wght" 800',
-              letterSpacing: "-0.035em",
-              fontSize: "clamp(1.7rem, 4vw, 3rem)",
-              lineHeight: "0.9",
-            }}
-          >
-            {p.title}
-          </h1>
-          <p className="mt-3 t-data text-ink-mute">Product code {p.code}</p>
+          <h1 className="h1 mt-3">{p.title}</h1>
+          <p className="mt-3 data text-text-2">Product code {p.code}</p>
 
           <table className="mt-8 w-full border-collapse text-[14.5px]">
             <caption className="sr-only">Technical specification for {p.title}</caption>
             <tbody>
               {p.specs.map((s, i) => (
-                <tr key={`${s.label}-${i}`} className="border-b border-rule">
+                <tr key={`${s.label}-${i}`} className="border-b border-border">
                   <th
                     scope="row"
-                    className="w-[46%] py-3 text-left font-normal text-ink-mute"
+                    className="w-[46%] py-3 text-left font-normal text-text-2"
                   >
                     {s.label}
                   </th>
-                  <td className="t-data py-3 text-ink">{s.value}</td>
+                  <td className="data py-3 text-text">{s.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -150,7 +140,7 @@ export default async function ProductPage({ params }: Props) {
               slug={p.slug}
               category={p.category}
             />
-            <p className="mt-3 text-[12.5px] leading-relaxed text-ink-mute">
+            <p className="mt-3 text-[12.5px] leading-relaxed text-text-2">
               No pricing is published. Add as many products as you need and submit one request —
               codes, specifications and quantities travel with it.
             </p>
@@ -159,9 +149,9 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       {related.length > 0 && (
-        <section className="mt-[clamp(48px,8vh,110px)] border-t border-rule pt-[clamp(28px,4vh,56px)]">
-          <h2 className="t-label mb-5">More in {cat?.title}</h2>
-          <ul className="grid grid-cols-2 gap-px border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-4">
+        <section className="mt-14 border-t border-border pt-10">
+          <h2 className="eyebrow-muted mb-5">More in {cat?.title}</h2>
+          <ul className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
             {related.map((r) => (
               <ProductCard key={r.code} product={r} />
             ))}

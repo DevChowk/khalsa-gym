@@ -75,7 +75,7 @@ export function Carousel({
       className={className}
     >
       <div className="mb-4 flex items-center justify-end gap-3">
-        <p className="t-data text-ink-mute" aria-live="polite">
+        <p className="data text-text-2" aria-live="polite">
           {total > 0 ? `${index} / ${total}` : ""}
         </p>
         <div className="flex gap-1.5">
@@ -84,7 +84,7 @@ export function Carousel({
             onClick={() => step(-1)}
             disabled={atStart}
             aria-label={`Previous — ${label}`}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-rule-2 transition-colors hover:bg-ink hover:text-paper disabled:pointer-events-none disabled:opacity-30"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-2 transition-colors hover:bg-text hover:text-white disabled:pointer-events-none disabled:opacity-30"
           >
             <Arrow dir="left" />
           </button>
@@ -93,7 +93,7 @@ export function Carousel({
             onClick={() => step(1)}
             disabled={atEnd}
             aria-label={`Next — ${label}`}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-rule-2 transition-colors hover:bg-ink hover:text-paper disabled:pointer-events-none disabled:opacity-30"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-2 transition-colors hover:bg-text hover:text-white disabled:pointer-events-none disabled:opacity-30"
           >
             <Arrow dir="right" />
           </button>
@@ -103,7 +103,7 @@ export function Carousel({
       <ul
         ref={track}
         tabIndex={0}
-        className="no-scrollbar flex snap-x snap-mandatory gap-px overflow-x-auto border border-rule bg-rule focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal"
+        className="no-scrollbar flex snap-x snap-mandatory gap-px overflow-x-auto border border-border bg-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         {children}
       </ul>
@@ -120,7 +120,7 @@ export function CarouselItem({
 }) {
   return (
     <li
-      className={`shrink-0 snap-start bg-paper ${className}`}
+      className={`shrink-0 snap-start bg-bg ${className}`}
       style={{ flexBasis: "clamp(220px, 24vw, 300px)" }}
     >
       {children}

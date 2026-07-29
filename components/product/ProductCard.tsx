@@ -9,10 +9,10 @@ import { accentFor, type Product } from "@/lib/data";
  */
 export function ProductCard({ product: p }: { product: Product }) {
   return (
-    <li className="bg-paper">
+    <li className="bg-bg">
       <Link
         href={`/products/${p.category}/${p.slug}`}
-        className="group relative block p-4 transition-colors hover:bg-paper-2"
+        className="group relative block p-4 transition-colors hover:bg-surface"
       >
         <span
           className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
@@ -45,8 +45,8 @@ export function ProductCard({ product: p }: { product: Product }) {
               )}
             </>
           ) : (
-            <div className="flex h-full items-center justify-center bg-paper-2">
-              <span className="t-data text-ink-mute">{p.code}</span>
+            <div className="flex h-full items-center justify-center bg-surface">
+              <span className="data text-text-2">{p.code}</span>
             </div>
           )}
         </div>
@@ -57,7 +57,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         >
           {p.title}
         </p>
-        <p className="mt-1.5 t-data text-ink-mute">{p.code}</p>
+        <p className="mt-1.5 data text-text-2">{p.code}</p>
       </Link>
     </li>
   );

@@ -1,108 +1,159 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SITE, CERTIFICATIONS, RECOGNITION, GROUP_ACCENT, accentFor, getCategories, getProducts } from "@/lib/data";
+import {
+  SITE,
+  CERTIFICATIONS,
+  RECOGNITION,
+  GROUP_ACCENT,
+  accentFor,
+  getCategories,
+  getProducts,
+} from "@/lib/data";
 import { Counter } from "@/components/motion/Counter";
 import { Marquee } from "@/components/motion/Marquee";
 import { Carousel, CarouselItem } from "@/components/ui/Carousel";
 
 const STEPS = [
   {
-    n: "1",
+    n: "01",
     title: "Browse the range",
-    body: "Every product shows its manufacturing code and full specification — pipe diameter, height, capacity, materials.",
+    body: "Every product lists its manufacturing code and full specification — pipe diameter, height, capacity and materials.",
   },
   {
-    n: "2",
+    n: "02",
     title: "Add what you need",
-    body: "Build a list across any number of categories. Set the quantity for each item as you go.",
+    body: "Build one list across any number of ranges, setting quantities as you go.",
   },
   {
-    n: "3",
-    title: "Send one request",
-    body: "We reply with pricing, lead time and installation. Your codes and specifications come attached automatically.",
+    n: "03",
+    title: "Send a single request",
+    body: "We reply with pricing, lead time and installation. Codes and specifications are attached automatically.",
   },
+];
+
+const SERVES = [
+  "Municipal corporations",
+  "Gram panchayats",
+  "Smart-city projects",
+  "Schools & anganwadi",
+  "Resorts & societies",
+  "Export distributors",
 ];
 
 export default function HomePage() {
   const cats = getCategories();
-  const featured = getProducts();
+  const products = getProducts();
+  const hero = RECOGNITION[0];
 
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="mx-auto flex max-w-[1560px] flex-col justify-end [min-height:min(76svh,820px)] px-[clamp(18px,3.4vw,56px)] pb-[clamp(22px,4vh,48px)] pt-[clamp(32px,8vh,80px)]">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule pb-4">
-          <p className="t-label">
-            Est. {SITE.founded} · {SITE.address.city}, {SITE.address.region}
-          </p>
-          <p className="t-label">Playground · Open gym · Sports</p>
-        </div>
+      <section className="border-b border-border bg-surface">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
+          <div>
+            <p className="eyebrow">Manufacturer &amp; exporter since {SITE.founded}</p>
+            <h1 className="h1 mt-4">
+              Playground, open gym and sports equipment — built to last in public spaces.
+            </h1>
+            <p className="lede mt-5">
+              Khalsa Exports has manufactured and powder-coated equipment in Meerut for four
+              decades, supplying municipal bodies, gram panchayats, schools and export buyers
+              across India and overseas.
+            </p>
 
-        <h1 className="t-mega reveal mt-[clamp(18px,4vh,44px)]">
-          We build
-          <br />
-          what a nation
-          <br />
-          plays on
-        </h1>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/products" className="btn btn-primary lift">
+                Browse {products.length} products
+              </Link>
+              <Link href="/quote" className="btn btn-secondary lift">
+                Request a quote
+              </Link>
+            </div>
 
-        <div className="mt-[clamp(20px,3.5vh,40px)] flex flex-wrap items-end justify-between gap-6 border-t border-rule pt-6">
-          <p className="t-body max-w-[46ch] text-[17px]">
-            Khalsa Exports manufactures playground, outdoor open-gym and sports equipment in
-            Meerut — supplied to municipal bodies, gram panchayats, schools and export buyers
-            across four decades.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/products"
-              className="lift rounded-full bg-ink px-7 py-3.5 text-[15px] text-paper"
-              style={{ fontVariationSettings: '"wdth" 110, "wght" 700' }}
-            >
-              Browse the range
-            </Link>
-            <Link
-              href="/quote"
-              className="rounded-full border-[1.5px] border-ink px-7 py-3.5 text-[15px] transition-colors hover:bg-ink hover:text-paper"
-              style={{ fontVariationSettings: '"wdth" 110, "wght" 700' }}
-            >
-              Request a quote
-            </Link>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-5">
+              {["ISO 9001", "EN 1176-1:2017", "EN 16630", "CE", "GS"].map((c) => (
+                <li key={c} className="data text-text-3">
+                  {c}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {/* the strongest credential Khalsa owns, on the first screen */}
+          <figure className="card m-0 overflow-hidden">
+            <div className="relative aspect-[5/4]">
+              <Image
+                src={hero.imageColour}
+                alt={`${hero.who}, ${hero.role}. ${hero.what}`}
+                fill
+                priority
+                sizes="(max-width:1024px) 92vw, 620px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="border-t border-border bg-bg p-4">
+              <p className="eyebrow">{hero.role}</p>
+              <p className="h3 mt-1.5">{hero.who}</p>
+              <p className="mt-1.5 text-[13.5px] leading-snug text-text-2">{hero.what}</p>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
+      {/* ── STATS BAR ────────────────────────────────────────── */}
+      <section className="border-b border-border bg-bg">
+        <ul className="mx-auto grid max-w-[1320px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
+          {SITE.counters.map((c) => (
+            <li key={c.label} className="bg-bg px-6 py-7">
+              <Counter to={c.value} suffix={c.suffix} />
+              <p className="mt-2 text-[13px] leading-snug text-text-2">{c.label}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <Marquee
-        items={["Open gym", "Children's park", "Multiplay", "Athletics", "Gymnastics", "Surfaces"]}
+        items={[
+          "Outdoor open gym",
+          "Children's park",
+          "Multi-action play",
+          "Athletics",
+          "Gymnastics",
+          "Basketball",
+          "Synthetic surfaces",
+          "Anganwadi",
+          "Smart-city projects",
+          "Export supply",
+        ]}
       />
 
-      {/* ── WHAT WE MAKE ─────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(58px,8.5vh,110px)]">
-        <SectionHead
-          label="What we make"
+      {/* ── RANGES ───────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1320px] px-6 py-14 lg:py-20">
+        <Head
+          eyebrow="What we manufacture"
           title="Five ranges"
-          intro="Pick a range to see every product in it, with full specifications."
+          lede="Each range links to every product in it, with the full specification table."
         />
-        <ul className="reveal-stagger mt-[clamp(22px,3.5vh,40px)] grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3 [&>li]:bg-paper">
+
+        <ul className="reveal-stagger mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cats.map((c) => {
             const n = getProducts(c.slug).length;
+            const accent = GROUP_ACCENT[c.group].hex;
             return (
-              <li key={c.slug} className="bg-paper">
+              <li key={c.slug}>
                 <Link
                   href={`/products/${c.slug}`}
-                  className="group flex h-full flex-col justify-between p-[clamp(20px,2.4vw,32px)] transition-colors hover:bg-paper-2"
+                  className="card lift group flex h-full flex-col p-6"
                 >
-                  <div>
-                    <span
-                      className="mb-4 block h-1 w-10 rounded-full"
-                      style={{ background: GROUP_ACCENT[c.group].hex }}
-                    />
-                    <h3 className="t-h3">{c.title}</h3>
-                    <p className="t-body mt-3 text-[14.5px]">{c.intro}</p>
-                  </div>
-                  <p
-                    className="t-data mt-6 flex items-center gap-2"
-                    style={{ color: GROUP_ACCENT[c.group].hex }}
-                  >
+                  <span
+                    className="mb-4 block h-1.5 w-10 rounded-full"
+                    style={{ background: accent }}
+                  />
+                  <h3 className="h3">{c.title}</h3>
+                  <p className="mt-2.5 flex-1 text-[14.5px] leading-relaxed text-text-2">
+                    {c.intro}
+                  </p>
+                  <p className="data mt-5 flex items-center gap-2" style={{ color: accent }}>
                     {n > 0 ? `${n} product${n === 1 ? "" : "s"}` : "View range"}
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </p>
@@ -113,179 +164,155 @@ export default function HomePage() {
         </ul>
       </section>
 
-      {/* ── PRODUCT CAROUSEL ─────────────────────────────────── */}
-      <section className="mx-auto max-w-[1560px] border-t border-rule px-[clamp(18px,3.4vw,56px)] py-[clamp(58px,8.5vh,110px)]">
-        <SectionHead
-          label="Popular products"
-          title="In the catalogue"
-          intro="Hover any product to see it in full colour. Every item carries its code — quote it directly in a tender."
-          action={{ href: "/products", text: `All ${featured.length} products` }}
-        />
+      {/* ── PRODUCTS CAROUSEL ────────────────────────────────── */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-[1320px] px-6 py-14 lg:py-20">
+          <Head
+            eyebrow="Catalogue"
+            title="Products"
+            lede="Hover any item to see it in full colour. Every product carries its manufacturing code."
+            action={{ href: "/products", text: `All ${products.length} products` }}
+          />
 
-        <Carousel label="Popular products" className="mt-[clamp(18px,3vh,32px)]">
-          {featured.map((p) => (
-            <CarouselItem key={p.code}>
-              <Link
-                href={`/products/${p.category}/${p.slug}`}
-                className="group relative block h-full p-4 transition-colors hover:bg-paper-2"
-              >
-                <span
-                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                  style={{ background: accentFor(p.category) }}
-                />
-                <div className="plate relative aspect-square overflow-hidden">
-                  {p.image ? (
-                    <>
-                      <Image
-                        src={p.image}
-                        alt={`${p.title} — ${p.code}`}
-                        fill
-                        sizes="300px"
-                        className={
-                          p.imageColour
-                            ? "object-contain transition-opacity duration-500 group-hover:opacity-0"
-                            : "object-contain"
-                        }
-                      />
-                      {p.imageColour && (
-                        <Image
-                          src={p.imageColour}
-                          alt=""
-                          aria-hidden
-                          fill
-                          sizes="300px"
-                          className="object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <div className="flex h-full items-center justify-center bg-paper-2">
-                      <span className="t-data text-ink-mute">{p.code}</span>
-                    </div>
-                  )}
-                </div>
-                <p
-                  className="mt-3.5 text-[14px] leading-tight"
-                  style={{ fontVariationSettings: '"wdth" 106, "wght" 700' }}
+          <Carousel label="Products" className="mt-8">
+            {products.map((p) => (
+              <CarouselItem key={p.code}>
+                <Link
+                  href={`/products/${p.category}/${p.slug}`}
+                  className="group block h-full bg-bg p-4 transition-colors hover:bg-surface-2"
                 >
-                  {p.title}
-                </p>
-                <p className="mt-1.5 t-data text-ink-mute">{p.code}</p>
-                <p className="mt-2.5 t-data flex items-center gap-1.5 text-ink">
-                  View
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </p>
-              </Link>
-            </CarouselItem>
-          ))}
-        </Carousel>
+                  <div className="plate relative aspect-square overflow-hidden rounded-[4px] border border-border">
+                    {p.image ? (
+                      <>
+                        <Image
+                          src={p.image}
+                          alt={`${p.title} — ${p.code}`}
+                          fill
+                          sizes="280px"
+                          className={
+                            p.imageColour
+                              ? "object-contain p-2 transition-opacity duration-500 group-hover:opacity-0"
+                              : "object-contain p-2"
+                          }
+                        />
+                        {p.imageColour && (
+                          <Image
+                            src={p.imageColour}
+                            alt=""
+                            aria-hidden
+                            fill
+                            sizes="280px"
+                            className="object-contain p-2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <div className="flex h-full items-center justify-center">
+                        <span className="data text-text-3">{p.code}</span>
+                      </div>
+                    )}
+                  </div>
+                  <p
+                    className="mt-3.5 text-[14.5px] leading-snug"
+                    style={{ fontVariationSettings: '"wdth" 102, "wght" 660' }}
+                  >
+                    {p.title}
+                  </p>
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="data text-text-3">{p.code}</span>
+                    <span
+                      className="data flex items-center gap-1"
+                      style={{ color: accentFor(p.category) }}
+                    >
+                      View{" "}
+                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </Carousel>
+        </div>
+      </section>
+
+      {/* ── WHO WE SUPPLY ────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1320px] px-6 py-14 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <Head
+              eyebrow="Who we supply"
+              title="Built for public use"
+              lede="Equipment installed in unsupervised public spaces has to survive weather, volume and time. Ours is fabricated from heavy-gauge steel, powder-coated, and certified to European playground standards."
+            />
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {SERVES.map((s) => (
+                <li key={s} className="chip">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <ul className="reveal-stagger grid grid-cols-2 gap-4">
+            {RECOGNITION.slice(1, 5).map((r) => (
+              <li key={r.id}>
+                <figure className="card m-0 h-full overflow-hidden">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={r.imageColour}
+                      alt={`${r.who}. ${r.what}`}
+                      fill
+                      sizes="(max-width:1024px) 45vw, 300px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <figcaption className="border-t border-border p-3.5">
+                    <p
+                      className="text-[13.5px] leading-tight"
+                      style={{ fontVariationSettings: '"wdth" 102, "wght" 680' }}
+                    >
+                      {r.who}
+                    </p>
+                    <p className="mt-1 text-[11.5px] leading-snug text-text-3">{r.role}</p>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ── HOW TO ORDER ─────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1560px] border-t border-rule px-[clamp(18px,3.4vw,56px)] py-[clamp(58px,8.5vh,110px)]">
-        <SectionHead
-          label="How to order"
-          title="Three steps"
-          intro="No pricing is published — equipment is quoted to your site and quantity."
-        />
-        <ol className="reveal-stagger mt-[clamp(22px,3.5vh,40px)] grid gap-px border border-rule bg-rule md:grid-cols-3">
-          {STEPS.map((s) => (
-            <li key={s.n} className="bg-paper p-[clamp(20px,2.6vw,36px)]">
-              <span
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-[16px] text-paper"
-                style={{ fontVariationSettings: '"wdth" 110, "wght" 750' }}
-              >
-                {s.n}
-              </span>
-              <h3 className="t-h3 mt-5">{s.title}</h3>
-              <p className="t-body mt-3 text-[14.5px]">{s.body}</p>
-            </li>
-          ))}
-        </ol>
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-[1320px] px-6 py-14 lg:py-20">
+          <Head
+            eyebrow="How to order"
+            title="Three steps to a quote"
+            lede="No pricing is published — equipment is quoted against your site, quantity and installation requirements."
+          />
+          <ol className="reveal-stagger mt-8 grid gap-4 md:grid-cols-3">
+            {STEPS.map((s) => (
+              <li key={s.n} className="card bg-bg p-6">
+                <span className="data text-brand">{s.n}</span>
+                <h3 className="h3 mt-3">{s.title}</h3>
+                <p className="mt-2.5 text-[14.5px] leading-relaxed text-text-2">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
-      {/* ── RECOGNITION CAROUSEL ─────────────────────────────── */}
-      <section className="mx-auto max-w-[1560px] border-t border-rule px-[clamp(18px,3.4vw,56px)] py-[clamp(58px,8.5vh,110px)]">
-        <SectionHead
-          label="Recognition"
-          title="They have used it"
-          intro="The Prime Minister and the Defence Minister of India have personally used Khalsa open-gym equipment. Hover any photograph to see it in colour."
-          action={{ href: "/recognition", text: "All records" }}
+      {/* ── CERTIFICATIONS ───────────────────────────────────── */}
+      <section className="mx-auto max-w-[1320px] px-6 py-14 lg:py-20">
+        <Head
+          eyebrow="Quality"
+          title="Certified and independently tested"
+          lede={`${CERTIFICATIONS.length}+ certifications and MSME (PPDC) test reports covering pipe thickness, weld strength, bearing load and coating adhesion.`}
+          action={{ href: "/recognition", text: "See all credentials" }}
         />
-
-        <Carousel label="Recognition" className="mt-[clamp(18px,3vh,32px)]">
-          {RECOGNITION.map((r, i) => (
-            <CarouselItem key={r.id}>
-              <figure className="group m-0 h-full">
-                <div className="relative aspect-[4/5] overflow-hidden bg-paper-2">
-                  <span
-                    className="absolute left-3 top-3 z-10 t-data text-white"
-                    style={{ textShadow: "0 1px 4px rgba(0,0,0,.65)" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <Image
-                    src={r.image}
-                    alt={`${r.who}, ${r.role}. ${r.what}`}
-                    fill
-                    sizes="300px"
-                    className="object-cover transition-opacity duration-700 group-hover:opacity-0"
-                  />
-                  <Image
-                    src={r.imageColour}
-                    alt=""
-                    aria-hidden
-                    fill
-                    sizes="300px"
-                    className="object-cover opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-                  />
-                </div>
-                <figcaption className="p-4">
-                  <p
-                    className="text-[14.5px] leading-tight"
-                    style={{ fontVariationSettings: '"wdth" 108, "wght" 740' }}
-                  >
-                    {r.who}
-                  </p>
-                  <p
-                    className="mt-1.5 text-[10px] uppercase text-signal"
-                    style={{
-                      fontVariationSettings: '"wdth" 100, "wght" 700',
-                      letterSpacing: "0.15em",
-                    }}
-                  >
-                    {r.role}
-                  </p>
-                  <p className="mt-2 text-[12.5px] leading-snug text-ink-mute">{r.what}</p>
-                </figcaption>
-              </figure>
-            </CarouselItem>
-          ))}
-        </Carousel>
-      </section>
-
-      {/* ── CREDENTIALS ──────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1560px] border-t border-rule px-[clamp(18px,3.4vw,56px)] py-[clamp(58px,8.5vh,110px)]">
-        <SectionHead
-          label="Credentials"
-          title="Certified and tested"
-          intro={`${CERTIFICATIONS.length}+ certifications including ISO 9001, EN 1176-1:2017 and EN 16630, backed by MSME test reports on pipe, weld, bearing and coating.`}
-        />
-        <ul className="mt-[clamp(22px,3.5vh,40px)] grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
-          {SITE.counters.map((c) => (
-            <li key={c.label} className="bg-paper p-[clamp(20px,2.8vw,36px)]">
-              <Counter to={c.value} suffix={c.suffix} />
-              <p className="mt-3 text-[12.5px] leading-snug text-ink-mute">{c.label}</p>
-            </li>
-          ))}
-        </ul>
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="mt-7 flex flex-wrap gap-2">
           {CERTIFICATIONS.map((c) => (
-            <li
-              key={c}
-              className="rounded-full border border-rule-2 px-3.5 py-1.5 text-[11.5px] text-ink-mute"
-              style={{ fontVariationSettings: '"wdth" 100, "wght" 550' }}
-            >
+            <li key={c} className="chip">
               {c}
             </li>
           ))}
@@ -293,33 +320,25 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="bg-ink-max px-[clamp(18px,3.4vw,56px)] py-[clamp(52px,9vh,110px)] text-paper">
-        <div className="mx-auto max-w-[1560px]">
-          <p className="t-label" style={{ color: "#8A8A90" }}>
-            Request a quote
-          </p>
-          <h2 className="t-h2 mt-4 max-w-[14ch]">Build your list. We&rsquo;ll price it.</h2>
-          <p className="t-body mt-5" style={{ color: "#A5A5AB" }}>
-            Add any number of products to one request. Codes, specifications and quantities travel
-            with it, so nothing gets lost in translation.
-          </p>
-          <div className="mt-[clamp(24px,4vh,44px)] flex flex-wrap gap-3">
-            <Link
-              href="/products"
-              className="lift inline-flex items-center gap-3 rounded-full bg-paper px-7 py-4 text-[15px] text-ink-max"
-              style={{ fontVariationSettings: '"wdth" 110, "wght" 750' }}
+      <section className="bg-text px-6 py-14 lg:py-20">
+        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-8">
+          <div>
+            <h2 className="h2" style={{ color: "#fff" }}>
+              Ready to specify your project?
+            </h2>
+            <p
+              className="mt-3 max-w-[52ch] text-[15.5px] leading-relaxed"
+              style={{ color: "#b9bfc5" }}
             >
-              <span className="h-[7px] w-[7px] rounded-full bg-signal" />
+              Add products to one request and we&rsquo;ll come back with pricing, lead time and
+              installation — with every code and specification attached.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/products" className="btn btn-primary lift">
               Browse the range
             </Link>
-            <a
-              href={`tel:${SITE.phones[0].replace(/\s/g, "")}`}
-              className="inline-flex items-center rounded-full border-[1.5px] px-7 py-4 text-[15px] transition-colors hover:bg-paper hover:text-ink-max"
-              style={{
-                fontVariationSettings: '"wdth" 110, "wght" 700',
-                borderColor: "rgba(244,242,237,.34)",
-              }}
-            >
+            <a href={`tel:${SITE.phones[0].replace(/\s/g, "")}`} className="btn btn-ghost">
               Call {SITE.phones[0]}
             </a>
           </div>
@@ -329,38 +348,28 @@ export default function HomePage() {
   );
 }
 
-function SectionHead({
-  label,
+function Head({
+  eyebrow,
   title,
-  intro,
+  lede,
   action,
 }: {
-  label: string;
+  eyebrow: string;
   title: string;
-  intro: string;
+  lede: string;
   action?: { href: string; text: string };
 }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+    <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
       <div>
-        <p className="t-label">{label}</p>
-        <h2
-          className="mt-3 uppercase"
-          style={{
-            fontVariationSettings: '"wdth" 118, "wght" 800',
-            letterSpacing: "-0.035em",
-            fontSize: "clamp(1.6rem, 3.6vw, 2.9rem)",
-            lineHeight: "0.92",
-          }}
-        >
-          {title}
-        </h2>
-        <p className="t-body mt-3.5 text-[15px]">{intro}</p>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="h2 mt-2.5">{title}</h2>
+        <p className="lede mt-3">{lede}</p>
       </div>
       {action && (
         <Link
           href={action.href}
-          className="t-data flex items-center gap-2 whitespace-nowrap border-b border-ink pb-1 transition-opacity hover:opacity-60"
+          className="data flex items-center gap-2 whitespace-nowrap text-brand-dark transition-opacity hover:opacity-70"
         >
           {action.text} <span aria-hidden>→</span>
         </Link>

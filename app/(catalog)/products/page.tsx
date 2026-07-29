@@ -13,17 +13,17 @@ export default function ProductsIndex() {
   const cats = getCategories();
 
   return (
-    <div className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(40px,7vh,90px)]">
-      <nav aria-label="Breadcrumb" className="t-data mb-6 text-ink-mute">
-        <Link href="/" className="hover:text-ink">
+    <div className="mx-auto max-w-[1320px] px-6 py-10 lg:py-14">
+      <nav aria-label="Breadcrumb" className="data mb-6 text-text-2">
+        <Link href="/" className="hover:text-text">
           Home
         </Link>
         <span aria-hidden> / </span>
-        <span className="text-ink">Products</span>
+        <span className="text-text">Products</span>
       </nav>
 
-      <h1 className="t-h2 max-w-[16ch]">The range</h1>
-      <p className="t-body mt-5">
+      <h1 className="h2 max-w-[16ch]">The range</h1>
+      <p className="lede mt-5">
         {getProducts().length} products across {cats.length} groups. Every item carries its
         manufacturing code — quote it directly in a tender document.
       </p>
@@ -32,14 +32,14 @@ export default function ProductsIndex() {
         const items = getProducts(c.slug);
         if (!items.length) return null;
         return (
-          <section key={c.slug} className="mt-[clamp(40px,6vh,80px)]">
-            <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3">
-              <h2 className="t-h3">{c.title}</h2>
-              <Link href={`/products/${c.slug}`} className="t-label hover:text-ink">
+          <section key={c.slug} className="mt-12">
+            <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-3">
+              <h2 className="h3">{c.title}</h2>
+              <Link href={`/products/${c.slug}`} className="eyebrow-muted hover:text-text">
                 {items.length} products →
               </Link>
             </div>
-            <ul className="grid grid-cols-2 gap-px border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-4">
+            <ul className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
               {items.map((p) => (
                 <ProductCard key={p.code} product={p} />
               ))}

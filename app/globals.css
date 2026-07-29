@@ -2,45 +2,50 @@
 
 /* ============================================================
    KHALSA EXPORTS — DESIGN TOKENS
-   Whitish paper ground, cool ink, colour used only for wayfinding.
+   Corporate industrial. White ground, Khalsa red, cool grey.
 
-   Contrast (measured, WCAG 2.1, against --paper #F7F5F2):
-     ink       #1A1A1D  15.9:1   AAA
-     ink-mute  #63636A   5.5:1   AA
-     signal    #E31E24   4.2:1   FAILS for text -> non-text / large only
-     play      #1A5FB4   5.8:1   AA
-     fitness   #B3121B   6.4:1   AA
-     sports    #146B3A   6.0:1   AA
-     surfaces  #8A5A00   5.5:1   AA
+   Contrast (measured, WCAG 2.1, on #FFFFFF):
+     text     #16181A  16.9:1  AAA
+     text-2   #5A6169   6.3:1  AA
+     text-3   #6E767D   4.6:1  AA
+     brand    #E31E24   4.7:1  AA (normal text, just clears)
+     brand-dk #C4161B   6.0:1  AA — use for links and small text
+   White on #E31E24 is also 4.7:1, so red buttons are AA-safe.
 
    GIGW 3.0 mandates WCAG 2.1 AA for Indian government digital
-   services, and those bodies are Khalsa's buyers. Never use
-   --signal for body text or small labels.
+   services, and those bodies are Khalsa's buyers.
    ============================================================ */
 
 :root {
-  --paper: #f7f5f2;
-  --paper-2: #eeebe6;
-  --paper-3: #e3dfd8;
+  --bg: #ffffff;
+  --surface: #f6f7f8;
+  --surface-2: #edeff1;
 
-  --rule: #d8d4cc;
-  --rule-2: #bfbab0;
+  --border: #dfe3e6;
+  --border-2: #c6ccd1;
 
-  --ink-mute: #63636a;
-  --ink: #1a1a1d;
-  --ink-max: #0b0b0c;
+  --text: #16181a;
+  --text-2: #5a6169;
+  --text-3: #6e767d;
 
-  --signal: #e31e24; /* non-text use only */
+  --brand: #e31e24;
+  --brand-dark: #c4161b;
+  --brand-tint: #fdeced;
+  --accent: #ffc20e; /* equipment yellow — fills only, never text on white */
 
-  --ok: #1f7a43;
-  --warn: #96590a;
+  --ok: #17794a;
+  --warn: #8a5a00;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(22, 24, 26, 0.05);
+  --shadow: 0 1px 2px rgba(22, 24, 26, 0.05), 0 6px 16px -8px rgba(22, 24, 26, 0.16);
+  --shadow-lg: 0 2px 4px rgba(22, 24, 26, 0.06), 0 16px 32px -12px rgba(22, 24, 26, 0.22);
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-1: 180ms;
-  --dur-2: 320ms;
-  --dur-3: 620ms;
-
-  --grain-opacity: 0.055;
+  --dur-1: 160ms;
+  --dur-2: 280ms;
 
   --font-mono-stack: ui-monospace, SFMono-Regular, Menlo, Consolas,
     "Liberation Mono", monospace;
@@ -48,50 +53,48 @@
   color-scheme: light;
 }
 
-/* Light is the default for everyone. The brand ground is a whitish paper, so
-   an OS dark preference does not silently flip the identity. Dark stays fully
-   designed and available via data-theme="dark". */
 :root[data-theme="dark"] {
-  --paper: #0b0b0c;
-  --paper-2: #141416;
-  --paper-3: #1d1d20;
-  --rule: #2a2a2e;
-  --rule-2: #3d3d43;
-  --ink-mute: #9a9aa1;
-  --ink: #f2f0ec;
-  --ink-max: #ffffff;
-  --signal: #f04438; /* 5.2:1 on #0B0B0C */
-  --ok: #4ade80;
-  --warn: #fbbf24;
-  --grain-opacity: 0.04;
+  --bg: #101215;
+  --surface: #171a1e;
+  --surface-2: #1f2328;
+  --border: #2a2f35;
+  --border-2: #3a4048;
+  --text: #f2f4f6;
+  --text-2: #a8b0b8;
+  --text-3: #8d959d;
+  --brand: #ff4d52;
+  --brand-dark: #ff6b70;
+  --brand-tint: #2a1517;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 16px -8px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.55), 0 16px 32px -12px rgba(0, 0, 0, 0.8);
   color-scheme: dark;
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-paper-2: var(--paper-2);
-  --color-paper-3: var(--paper-3);
-  --color-rule: var(--rule);
-  --color-rule-2: var(--rule-2);
-  --color-ink: var(--ink);
-  --color-ink-mute: var(--ink-mute);
-  --color-ink-max: var(--ink-max);
-  --color-signal: var(--signal);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-2: var(--border-2);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-tint: var(--brand-tint);
+  --color-accent: var(--accent);
   --color-ok: var(--ok);
-  --color-warn: var(--warn);
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-stack);
-
+  --radius-brand: var(--radius);
   --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ============================================================
-   BASE
-   MUST live in @layer base. Unlayered CSS outranks every layered
-   rule in the cascade — including Tailwind's utilities — so an
-   unlayered `a { color: inherit }` silently defeats `text-paper`
-   and renders dark text on a dark button.
+   BASE — must be layered, or unlayered element rules outrank
+   every Tailwind utility in the cascade.
    ============================================================ */
 
 @layer base {
@@ -102,12 +105,12 @@
   }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--bg);
+    color: var(--text);
     font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
     font-variation-settings: "wdth" 100, "wght" 400;
-    font-size: 17px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -117,8 +120,8 @@
   h3,
   h4 {
     margin: 0;
-    line-height: 0.9;
     text-wrap: balance;
+    color: var(--text);
   }
 
   p {
@@ -137,93 +140,150 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--signal);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 3px;
   }
 
   ::selection {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--brand);
+    color: #fff;
   }
 }
 
 /* ============================================================
-   COMPONENTS — type roles, plates, grain, carousel
-   In @layer components so single-purpose utilities still win.
+   TYPE — restrained. Confident weight and tight tracking do the
+   work; size does not. Sentence case, not shouting caps.
    ============================================================ */
 
 @layer components {
-  .t-mega {
-    font-variation-settings: "wdth" 125, "wght" 850;
-    letter-spacing: -0.05em;
+  .h1 {
+    font-variation-settings: "wdth" 108, "wght" 780;
+    font-size: clamp(2rem, 3.6vw, 3.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+  }
+  .h2 {
+    font-variation-settings: "wdth" 106, "wght" 750;
+    font-size: clamp(1.5rem, 2.5vw, 2.05rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+  .h3 {
+    font-variation-settings: "wdth" 104, "wght" 700;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+  }
+  .eyebrow {
+    font-variation-settings: "wdth" 100, "wght" 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: clamp(3rem, 13.5vw, 13rem);
-    line-height: 0.8;
+    color: var(--brand);
   }
-  .t-h2 {
-    font-variation-settings: "wdth" 120, "wght" 800;
-    letter-spacing: -0.04em;
+  .eyebrow-muted {
+    font-variation-settings: "wdth" 100, "wght" 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: clamp(1.9rem, 6vw, 4.6rem);
-    line-height: 0.88;
+    color: var(--text-3);
   }
-  .t-h3 {
-    font-variation-settings: "wdth" 112, "wght" 720;
-    letter-spacing: -0.022em;
-    font-size: clamp(1.05rem, 2vw, 1.5rem);
-    line-height: 1.1;
+  .lede {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text-2);
+    max-width: 62ch;
   }
-  .t-label {
-    font-variation-settings: "wdth" 100, "wght" 680;
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-  }
-  .t-body {
-    font-size: clamp(1rem, 1.35vw, 1.2rem);
-    line-height: 1.5;
-    color: var(--ink-mute);
-    max-width: 56ch;
-  }
-  .t-data {
+  .data {
     font-family: var(--font-mono-stack);
     font-size: 12.5px;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.01em;
   }
 
-  /* hairlines sharpen on retina, never round to zero on DPR-1 */
-  .hairline {
-    border-width: 1px;
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-variation-settings: "wdth" 102, "wght" 680;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-1) var(--ease),
+      border-color var(--dur-1) var(--ease),
+      color var(--dur-1) var(--ease),
+      box-shadow var(--dur-1) var(--ease);
   }
-  @media (min-resolution: 2dppx) {
-    .hairline {
-      border-width: 0.5px;
-    }
+  .btn-primary {
+    background: var(--brand);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-primary:hover {
+    background: var(--brand-dark);
+    box-shadow: var(--shadow);
+  }
+  .btn-secondary {
+    background: var(--bg);
+    color: var(--text);
+    border-color: var(--border-2);
+  }
+  .btn-secondary:hover {
+    border-color: var(--text);
+    background: var(--surface);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.38);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
   }
 
-  /* Product cutouts are photographed on white. A fixed near-white plate in
-     both themes hides the JPEG boundary — reads as a catalogue page rather
-     than a floating rectangle. */
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition:
+      border-color var(--dur-2) var(--ease),
+      box-shadow var(--dur-2) var(--ease),
+      transform var(--dur-2) var(--ease);
+  }
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--border-2);
+    box-shadow: var(--shadow);
+  }
+
+  /* Product cutouts are photographed on white — keep the plate white in both
+     themes so the JPEG edge stays invisible. */
   .plate {
-    background: #fbfaf8;
+    background: #ffffff;
   }
 
-  /* One static grain tile. Never animated, never a per-frame SVG filter. */
-  .grain::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 900;
-    pointer-events: none;
-    opacity: var(--grain-opacity);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-2);
+    background: var(--bg);
+    font-variation-settings: "wdth" 100, "wght" 560;
   }
 
-  /* Carousel: native scroll-snap does the scrolling, JS only adds arrows.
-     Scrollbar hidden visually; the track stays focusable and scrollable. */
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -235,22 +295,19 @@
 }
 
 /* ============================================================
-   MOTION — OPT-IN.
-   The resting state is the VISIBLE state. Motion is added only
-   inside prefers-reduced-motion: no-preference, so a reveal can
-   never strand content at opacity:0 under reduced motion, a
-   failed hydration, or an errored chunk.
+   MOTION — opt-in. Resting state is the visible state, so a
+   reveal can never strand content invisible under reduced
+   motion, a failed hydration, or an errored chunk.
    ============================================================ */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Scroll-driven reveal — 0 KB JS, runs on the compositor thread.
-     The range MUST end at full entry. Extending it into `cover` leaves an
-     element sitting mid-viewport stuck at partial opacity for good. */
   @supports (animation-timeline: view()) {
     .reveal,
     .reveal-stagger > * {
       animation: reveal-up linear both;
       animation-timeline: view();
+      /* Must end at full entry — extending into `cover` leaves anything
+         resting mid-viewport permanently part-transparent. */
       animation-range: entry 0% entry 100%;
     }
   }
@@ -258,7 +315,7 @@
   @keyframes reveal-up {
     from {
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(16px);
     }
     to {
       opacity: 1;
@@ -266,17 +323,12 @@
     }
   }
 
-  .lift {
-    transition:
-      transform var(--dur-2) var(--ease),
-      background-color var(--dur-2) var(--ease);
-  }
   .lift:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
 
   .marquee-track {
-    animation: marquee-scroll 38s linear infinite;
+    animation: marquee-scroll 42s linear infinite;
   }
   .marquee:hover .marquee-track,
   .marquee:focus-within .marquee-track {
@@ -297,7 +349,6 @@
   }
 }
 
-/* site-level toggle, honoured the same way as the OS setting */
 [data-motion="off"] .reveal,
 [data-motion="off"] .reveal-stagger > * {
   animation: none !important;
@@ -306,10 +357,4 @@
 }
 [data-motion="off"] .marquee-track {
   animation: none !important;
-}
-[data-motion="off"] .lift {
-  transition: none !important;
-}
-[data-motion="off"] .lift:hover {
-  transform: none !important;
 }

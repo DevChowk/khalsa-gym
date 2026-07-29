@@ -50,15 +50,15 @@ export default function QuotePage() {
 
   if (status === "sent") {
     return (
-      <div className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(60px,12vh,140px)]">
-        <h1 className="t-h2 max-w-[14ch]">Request received</h1>
-        <p className="t-body mt-6">
+      <div className="mx-auto max-w-[1320px] px-6 py-16 lg:py-24">
+        <h1 className="h2 max-w-[14ch]">Request received</h1>
+        <p className="lede mt-6">
           Our team will come back with pricing and availability. Every product code and
           specification you selected was included.
         </p>
         <Link
           href="/products"
-          className="lift mt-8 inline-flex rounded-full bg-ink px-7 py-4 text-[15px] text-paper"
+          className="lift mt-8 inline-flex rounded-full bg-text px-7 py-4 text-[15px] text-white"
           style={{ fontVariationSettings: '"wdth" 110, "wght" 750' }}
         >
           Back to the range
@@ -68,43 +68,43 @@ export default function QuotePage() {
   }
 
   return (
-    <div className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(40px,7vh,90px)]">
-      <nav aria-label="Breadcrumb" className="t-data mb-8 text-ink-mute">
-        <Link href="/" className="hover:text-ink">
+    <div className="mx-auto max-w-[1320px] px-6 py-10 lg:py-14">
+      <nav aria-label="Breadcrumb" className="data mb-8 text-text-2">
+        <Link href="/" className="hover:text-text">
           Home
         </Link>
         <span aria-hidden> / </span>
-        <span className="text-ink">Quote request</span>
+        <span className="text-text">Quote request</span>
       </nav>
 
-      <h1 className="t-h2 max-w-[14ch]">Your quote request</h1>
+      <h1 className="h2 max-w-[14ch]">Your quote request</h1>
 
       {count === 0 ? (
         <>
-          <p className="t-body mt-6">
+          <p className="lede mt-6">
             Nothing added yet. Browse the range and add any products you want priced — you can
             submit them all in one request.
           </p>
           <Link
             href="/products"
-            className="lift mt-8 inline-flex rounded-full bg-ink px-7 py-4 text-[15px] text-paper"
+            className="lift mt-8 inline-flex rounded-full bg-text px-7 py-4 text-[15px] text-white"
             style={{ fontVariationSettings: '"wdth" 110, "wght" 750' }}
           >
             Browse the range
           </Link>
         </>
       ) : (
-        <div className="mt-[clamp(28px,4.5vh,56px)] grid gap-[clamp(24px,4vw,64px)] lg:grid-cols-[1fr_1fr]">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr]">
           {/* lines */}
           <section aria-labelledby="lines-h">
-            <h2 id="lines-h" className="t-label mb-4">
+            <h2 id="lines-h" className="eyebrow-muted mb-4">
               {count} item{count === 1 ? "" : "s"}
             </h2>
-            <ul className="border border-rule">
+            <ul className="border border-border">
               {lines.map((l) => (
                 <li
                   key={l.code}
-                  className="flex items-center justify-between gap-4 border-b border-rule p-4 last:border-b-0"
+                  className="flex items-center justify-between gap-4 border-b border-border p-4 last:border-b-0"
                 >
                   <div className="min-w-0">
                     <Link
@@ -114,7 +114,7 @@ export default function QuotePage() {
                     >
                       {l.title}
                     </Link>
-                    <p className="mt-1 t-data text-ink-mute">{l.code}</p>
+                    <p className="mt-1 data text-text-2">{l.code}</p>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
                     <label className="sr-only" htmlFor={`qty-${l.code}`}>
@@ -126,12 +126,12 @@ export default function QuotePage() {
                       min={1}
                       value={l.qty}
                       onChange={(e) => setQty(l.code, Number(e.target.value))}
-                      className="w-16 border border-rule-2 bg-paper px-2 py-1.5 text-center t-data"
+                      className="w-16 border border-border-2 bg-bg px-2 py-1.5 text-center data"
                     />
                     <button
                       type="button"
                       onClick={() => remove(l.code)}
-                      className="px-2 py-1.5 text-[12px] text-ink-mute underline underline-offset-4 hover:text-ink"
+                      className="px-2 py-1.5 text-[12px] text-text-2 underline underline-offset-4 hover:text-text"
                     >
                       Remove
                     </button>
@@ -143,7 +143,7 @@ export default function QuotePage() {
 
           {/* form */}
           <section aria-labelledby="details-h">
-            <h2 id="details-h" className="t-label mb-4">
+            <h2 id="details-h" className="eyebrow-muted mb-4">
               Your details
             </h2>
             <form onSubmit={onSubmit} className="grid gap-3">
@@ -154,14 +154,14 @@ export default function QuotePage() {
               <Field name="city" label="City" autoComplete="address-level2" />
 
               <div>
-                <label htmlFor="notes" className="t-label">
+                <label htmlFor="notes" className="eyebrow-muted">
                   Notes
                 </label>
                 <textarea
                   id="notes"
                   name="notes"
                   rows={4}
-                  className="mt-1.5 w-full border border-rule-2 bg-paper px-3 py-2.5 text-[15px]"
+                  className="mt-1.5 w-full border border-border-2 bg-bg px-3 py-2.5 text-[15px]"
                   placeholder="Site, timeline, installation requirements…"
                 />
               </div>
@@ -173,7 +173,7 @@ export default function QuotePage() {
               </div>
 
               {status === "error" && (
-                <p role="alert" className="text-[13.5px] text-signal">
+                <p role="alert" className="text-[13.5px] text-brand">
                   {message}
                 </p>
               )}
@@ -181,13 +181,13 @@ export default function QuotePage() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="lift mt-2 rounded-full bg-ink px-7 py-4 text-[15px] text-paper disabled:opacity-60"
+                className="lift mt-2 rounded-full bg-text px-7 py-4 text-[15px] text-white disabled:opacity-60"
                 style={{ fontVariationSettings: '"wdth" 110, "wght" 750' }}
               >
                 {status === "sending" ? "Sending…" : `Send request (${count})`}
               </button>
 
-              <p className="text-[12px] leading-relaxed text-ink-mute">
+              <p className="text-[12px] leading-relaxed text-text-2">
                 Product codes and full specifications are attached automatically.
               </p>
             </form>
@@ -213,7 +213,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="t-label">
+      <label htmlFor={name} className="eyebrow-muted">
         {label}
         {required && <span aria-hidden> *</span>}
       </label>
@@ -223,7 +223,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="mt-1.5 w-full border border-rule-2 bg-paper px-3 py-2.5 text-[15px]"
+        className="mt-1.5 w-full border border-border-2 bg-bg px-3 py-2.5 text-[15px]"
       />
     </div>
   );

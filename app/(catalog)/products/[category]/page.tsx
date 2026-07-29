@@ -39,44 +39,44 @@ export default async function CategoryPage({ params }: Props) {
   };
 
   return (
-    <div className="mx-auto max-w-[1560px] px-[clamp(18px,3.4vw,56px)] py-[clamp(40px,7vh,90px)]">
+    <div className="mx-auto max-w-[1320px] px-6 py-10 lg:py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <nav aria-label="Breadcrumb" className="t-data mb-6 text-ink-mute">
-        <Link href="/" className="hover:text-ink">
+      <nav aria-label="Breadcrumb" className="data mb-6 text-text-2">
+        <Link href="/" className="hover:text-text">
           Home
         </Link>
         <span aria-hidden> / </span>
-        <Link href="/products" className="hover:text-ink">
+        <Link href="/products" className="hover:text-text">
           Products
         </Link>
         <span aria-hidden> / </span>
-        <span className="text-ink">{c.title}</span>
+        <span className="text-text">{c.title}</span>
       </nav>
 
       <span
         className="mb-5 block h-1.5 w-14 rounded-full"
         style={{ background: GROUP_ACCENT[c.group].hex }}
       />
-      <h1 className="t-h2 max-w-[16ch]">{c.title}</h1>
-      <p className="t-body mt-5">{c.intro}</p>
-      <p className="t-data mt-4 text-ink-mute">
+      <h1 className="h2 max-w-[16ch]">{c.title}</h1>
+      <p className="lede mt-5">{c.intro}</p>
+      <p className="data mt-4 text-text-2">
         {items.length} product{items.length === 1 ? "" : "s"}
       </p>
 
       {items.length > 0 ? (
-        <ul className="mt-[clamp(28px,4.5vh,56px)] grid grid-cols-2 gap-px border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
           {items.map((p) => (
             <ProductCard key={p.code} product={p} />
           ))}
         </ul>
       ) : (
-        <p className="t-body mt-10">
+        <p className="lede mt-10">
           This range is being migrated from the printed catalogue.{" "}
-          <Link href="/quote" className="text-ink underline underline-offset-4">
+          <Link href="/quote" className="text-text underline underline-offset-4">
             Request a quote
           </Link>{" "}
           and we will send the current specification sheet.
