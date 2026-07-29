@@ -6,7 +6,7 @@ import { RECOGNITION, CERTIFICATIONS, TEST_REPORTS, SITE } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Recognition",
   description:
-    "The Prime Minister and the Defence Minister of India have used Khalsa Exports open-gym equipment. Ministerial visits, municipal installations, international trade fairs, and 27 certifications.",
+    "The Prime Minister and the Defence Minister of India have used Lakshika Industries open-gym equipment. Ministerial visits, municipal installations, international trade fairs, and 27 certifications.",
   alternates: { canonical: "/recognition" },
 };
 

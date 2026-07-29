@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/product/ProductCard";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Playground, outdoor open-gym, sports equipment and synthetic surfaces manufactured by Khalsa Exports, Meerut. Built to EN 1176 and EN 16630.",
+    "Playground, outdoor open-gym, sports equipment and synthetic surfaces manufactured by Lakshika Industries, Meerut. Built to EN 1176 and EN 16630.",
 };
 
 export default function ProductsIndex() {

@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: Props) {
     "@type": "Product",
     name: p.title,
     sku: p.code,
-    brand: { "@type": "Brand", name: "Khalsa" },
+    brand: { "@type": "Brand", name: SITE.shortName },
     manufacturer: { "@type": "Organization", name: SITE.legalName },
     category: cat?.title,
     additionalProperty: p.specs.map((s) => ({

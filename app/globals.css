@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ============================================================
-   KHALSA EXPORTS — DESIGN TOKENS
-   Corporate industrial. White ground, Khalsa red, cool grey.
+   LAKSHIKA INDUSTRIES — DESIGN TOKENS
+   Corporate industrial. White ground, Lakshika red, cool grey.
 
    Contrast (measured, WCAG 2.1, on #FFFFFF):
      text     #16181A  16.9:1  AAA
@@ -13,7 +13,7 @@
    White on #E31E24 is also 4.7:1, so red buttons are AA-safe.
 
    GIGW 3.0 mandates WCAG 2.1 AA for Indian government digital
-   services, and those bodies are Khalsa's buyers.
+   services, and those bodies are Lakshika Industries' buyers.
    ============================================================ */
 
 :root {

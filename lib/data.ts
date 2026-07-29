@@ -39,8 +39,8 @@ export const CATEGORIES = catalogue.categories as Category[];
 export const LEGACY_REDIRECTS = catalogue.legacyRedirects as Record<string, string>;
 
 export const SITE = {
-  legalName: "Khalsa Exports Private Limited",
-  shortName: "Khalsa",
+  legalName: "Lakshika Industries Private Limited",
+  shortName: "Lakshika Industries",
   founded: 1985,
   tagline: "Igniting the sporting zeal through quality equipment",
   address: {
@@ -73,22 +73,22 @@ export const TEST_REPORTS = [
 /** The nine photographs fused into one 1600×1600 JPEG on the legacy homepage. */
 export const RECOGNITION = [
   { id: "modi", who: "Sh. Narendra Modi", role: "Prime Minister of India",
-    what: "Exercising on Khalsa open-gym equipment at a Fit India exhibition.",
+    what: "Exercising on Lakshika Industries open-gym equipment at a Fit India exhibition.",
     image: "/recognition/modi.jpg", imageColour: "/recognition/modi-colour.jpg" },
   { id: "rajnath", who: "Sh. Rajnath Singh", role: "Defence Minister of India",
-    what: "Exercising on Khalsa open-gym equipment during a ministerial visit.",
+    what: "Exercising on Lakshika Industries open-gym equipment during a ministerial visit.",
     image: "/recognition/rajnath.jpg", imageColour: "/recognition/rajnath-colour.jpg" },
   { id: "yogi", who: "Sh. Yogi Adityanath", role: "Chief Minister, Uttar Pradesh",
-    what: "Reviewing the Khalsa stand alongside the Prime Minister.",
+    what: "Reviewing the Lakshika Industries stand alongside the Prime Minister.",
     image: "/recognition/yogi.jpg", imageColour: "/recognition/yogi-colour.jpg" },
-  { id: "lucknow", who: "Khalsa Gym, Lucknow", role: "Municipal installation",
+  { id: "lucknow", who: "Lakshika Industries Gym, Lucknow", role: "Municipal installation",
     what: "Inaugurated with the Mayor and the Municipal Commissioner.",
     image: "/recognition/lucknow.jpg", imageColour: "/recognition/lucknow-colour.jpg" },
   { id: "germany", who: "Germany", role: "International trade fair",
-    what: "Khalsa Exports equipment presented to export buyers in Europe.",
+    what: "Lakshika Industries equipment presented to export buyers in Europe.",
     image: "/recognition/germany.jpg", imageColour: "/recognition/germany-colour.jpg" },
   { id: "founder", who: "Late Sh. Jagjit Singh", role: "Founder",
-    what: "Representing Khalsa at the February 2024 sports fair.",
+    what: "Representing Lakshika Industries at the February 2024 sports fair.",
     image: "/recognition/founder.jpg", imageColour: "/recognition/founder-colour.jpg" },
 ];
 

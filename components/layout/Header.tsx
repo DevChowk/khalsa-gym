@@ -41,10 +41,10 @@ export function Header() {
               className="text-[21px] uppercase leading-none text-brand"
               style={{ fontVariationSettings: '"wdth" 112, "wght" 830', letterSpacing: "-0.02em" }}
             >
-              Khalsa
+              Lakshika
             </span>
             <span className="hidden whitespace-nowrap text-[9.5px] uppercase leading-none tracking-[0.16em] text-text-3 lg:block">
-              Exports Pvt Ltd
+              Industries Pvt Ltd
             </span>
           </Link>
 

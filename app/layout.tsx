@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.khalsa.co.in"),
   title: {
     default:
-      "Khalsa Exports — Playground, Open Gym & Sports Equipment Manufacturer",
-    template: "%s · Khalsa Exports",
+      "Lakshika Industries — Playground, Open Gym & Sports Equipment Manufacturer",
+    template: "%s · Lakshika Industries",
   },
   description:
-    "Khalsa Exports Private Limited has manufactured playground, outdoor open-gym and sports equipment in Meerut since 1985. ISO 9001 and EN 1176 certified. Supplied to municipal bodies, gram panchayats, schools and export buyers.",
-  openGraph: { type: "website", locale: "en_IN", siteName: "Khalsa Exports" },
+    "Lakshika Industries Private Limited has manufactured playground, outdoor open-gym and sports equipment in Meerut since 1985. ISO 9001 and EN 1176 certified. Supplied to municipal bodies, gram panchayats, schools and export buyers.",
+  openGraph: { type: "website", locale: "en_IN", siteName: "Lakshika Industries" },
   robots: { index: true, follow: true },
 };
 

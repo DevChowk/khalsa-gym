@@ -10,7 +10,7 @@ export type QuoteLine = {
   qty: number;
 };
 
-const KEY = "khalsa.quote.v1";
+const KEY = "lakshika.quote.v1";
 
 /**
  * localStorage is an external system, so the cart lives outside React and is

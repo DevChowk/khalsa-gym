@@ -56,7 +56,7 @@ export default function HomePage() {
               Playground, open gym and sports equipment — built to last in public spaces.
             </h1>
             <p className="lede mt-5">
-              Khalsa Exports has manufactured and powder-coated equipment in Meerut for four
+              Lakshika Industries has manufactured and powder-coated equipment in Meerut for four
               decades, supplying municipal bodies, gram panchayats, schools and export buyers
               across India and overseas.
             </p>
@@ -79,7 +79,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          {/* the strongest credential Khalsa owns, on the first screen */}
+          {/* the strongest credential Lakshika Industries owns, on the first screen */}
           <figure className="card m-0 overflow-hidden">
             <div className="relative aspect-[5/4]">
               <Image
