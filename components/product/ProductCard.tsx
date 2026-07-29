@@ -2,62 +2,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { accentFor, type Product } from "@/lib/data";
 
-/**
- * Images are boxed, never cropped or blown up. Sources are ~560px and the
- * display box stays well under that, which is what keeps them sharp.
- * Graded product shots return to colour on hover where a colour variant exists.
- */
 export function ProductCard({ product: p }: { product: Product }) {
+  const img = p.images[0];
   return (
-    <li className="bg-bg">
+    <li>
       <Link
         href={`/products/${p.category}/${p.slug}`}
-        className="group relative block p-4 transition-colors hover:bg-surface"
+        className="card lift group relative flex h-full flex-col overflow-hidden"
       >
-        <span
-          className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-          style={{ background: accentFor(p.category) }}
-        />
-
-        <div className="plate relative aspect-square overflow-hidden">
-          {p.image ? (
-            <>
-              <Image
-                src={p.image}
-                alt={`${p.title} — ${p.code}`}
-                fill
-                sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 22vw"
-                className={
-                  p.imageColour
-                    ? "object-contain transition-opacity duration-500 group-hover:opacity-0"
-                    : "object-contain"
-                }
-              />
-              {p.imageColour && (
-                <Image
-                  src={p.imageColour}
-                  alt=""
-                  aria-hidden
-                  fill
-                  sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 22vw"
-                  className="object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                />
-              )}
-            </>
+        <div className="plate relative aspect-square overflow-hidden border-b border-border">
+          {img ? (
+            <Image
+              src={img}
+              alt={`${p.title} — ${p.code}`}
+              fill
+              sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 300px"
+              className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.04]"
+            />
           ) : (
-            <div className="flex h-full items-center justify-center bg-surface">
-              <span className="data text-text-2">{p.code}</span>
+            <div className="flex h-full items-center justify-center">
+              <span className="data text-text-3">{p.code}</span>
             </div>
           )}
+          {p.images.length > 1 && (
+            <span className="absolute bottom-2 right-2 rounded-full bg-bg/90 px-2 py-0.5 text-[11px] text-text-2">
+              {p.images.length} photos
+            </span>
+          )}
         </div>
-
-        <p
-          className="mt-3 text-[13px] leading-tight"
-          style={{ fontVariationSettings: '"wdth" 106, "wght" 700' }}
-        >
-          {p.title}
-        </p>
-        <p className="mt-1.5 data text-text-2">{p.code}</p>
+        <div className="flex flex-1 flex-col p-3.5">
+          <p
+            className="text-[14px] leading-snug"
+            style={{ fontVariationSettings: '"wdth" 102, "wght" 640' }}
+          >
+            {p.title}
+          </p>
+          <div className="mt-auto flex items-center justify-between pt-2.5">
+            <span className="data text-text-3">{p.code}</span>
+            <span className="data" style={{ color: accentFor(p.category) }}>
+              View →
+            </span>
+          </div>
+        </div>
       </Link>
     </li>
   );

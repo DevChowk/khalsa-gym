@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, getProduct, getRelated, getCategory, accentFor, SITE } from "@/lib/data";
 import { ProductCard } from "@/components/product/ProductCard";
+import { Gallery } from "@/components/product/Gallery";
 import { AddToQuote } from "@/components/quote/QuoteTray";
 
 type Props = { params: Promise<{ category: string; slug: string }> };
@@ -73,40 +73,7 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         {/* image */}
-        <div className="plate group relative aspect-square overflow-hidden border border-border">
-          {p.image ? (
-            <>
-              <Image
-                src={p.image}
-                alt={`${p.title}, product code ${p.code}`}
-                fill
-                priority
-                sizes="(max-width:1024px) 92vw, 52vw"
-                className={
-                  p.imageColour
-                    ? "object-contain p-8 transition-opacity duration-700 group-hover:opacity-0"
-                    : "object-contain p-8"
-                }
-              />
-              {p.imageColour && (
-                <Image
-                  src={p.imageColour}
-                  alt=""
-                  aria-hidden
-                  fill
-                  sizes="(max-width:1024px) 92vw, 52vw"
-                  className="object-contain p-8 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-                />
-              )}
-            </>
-          ) : (
-            <div className="flex h-full items-center justify-center">
-              <span className="data text-text-2">
-                Photography being migrated — {p.code}
-              </span>
-            </div>
-          )}
-        </div>
+        <Gallery images={p.images} alt={`${p.title}, product code ${p.code}`} />
 
         {/* detail */}
         <div>
@@ -116,6 +83,7 @@ export default async function ProductPage({ params }: Props) {
           <h1 className="h1 mt-3">{p.title}</h1>
           <p className="mt-3 data text-text-2">Product code {p.code}</p>
 
+          {p.specs.length > 0 ? (
           <table className="mt-8 w-full border-collapse text-[14.5px]">
             <caption className="sr-only">Technical specification for {p.title}</caption>
             <tbody>
@@ -132,6 +100,12 @@ export default async function ProductPage({ params }: Props) {
               ))}
             </tbody>
           </table>
+          ) : (
+            <p className="mt-8 rounded-[8px] border border-border bg-surface p-4 text-[14px] leading-relaxed text-text-2">
+              A published specification sheet for this item is not yet online. Add it to a quote
+              request and we will send the full technical drawing and dimensions.
+            </p>
+          )}
 
           <div className="mt-8">
             <AddToQuote

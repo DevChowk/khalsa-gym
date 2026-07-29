@@ -182,30 +182,14 @@ export default function HomePage() {
                   className="group block h-full bg-bg p-4 transition-colors hover:bg-surface-2"
                 >
                   <div className="plate relative aspect-square overflow-hidden rounded-[4px] border border-border">
-                    {p.image ? (
-                      <>
-                        <Image
-                          src={p.image}
-                          alt={`${p.title} — ${p.code}`}
-                          fill
-                          sizes="280px"
-                          className={
-                            p.imageColour
-                              ? "object-contain p-2 transition-opacity duration-500 group-hover:opacity-0"
-                              : "object-contain p-2"
-                          }
-                        />
-                        {p.imageColour && (
-                          <Image
-                            src={p.imageColour}
-                            alt=""
-                            aria-hidden
-                            fill
-                            sizes="280px"
-                            className="object-contain p-2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                          />
-                        )}
-                      </>
+                    {p.images[0] ? (
+                      <Image
+                        src={p.images[0]}
+                        alt={`${p.title} — ${p.code}`}
+                        fill
+                        sizes="280px"
+                        className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.05]"
+                      />
                     ) : (
                       <div className="flex h-full items-center justify-center">
                         <span className="data text-text-3">{p.code}</span>
