@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Product } from "@/lib/data";
+import { accentFor, type Product } from "@/lib/data";
 
 /**
  * Images are boxed, never cropped or blown up. Sources are ~560px and the
@@ -14,7 +14,10 @@ export function ProductCard({ product: p }: { product: Product }) {
         href={`/products/${p.category}/${p.slug}`}
         className="group relative block p-4 transition-colors hover:bg-paper-2"
       >
-        <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-signal transition-transform duration-300 group-hover:scale-x-100" />
+        <span
+          className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+          style={{ background: accentFor(p.category) }}
+        />
 
         <div className="plate relative aspect-square overflow-hidden">
           {p.image ? (

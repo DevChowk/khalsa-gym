@@ -27,6 +27,24 @@ export type Category = {
   legacyPaths: string[];
 };
 
+/**
+ * Range accents. Colour here is wayfinding, not decoration — with five ranges
+ * and eventually ~48 categories, a consistent hue per range is how someone
+ * keeps their place. Every value is >= 4.5:1 on --paper (#F7F5F2), so these
+ * are safe as text as well as rules.
+ */
+export const GROUP_ACCENT: Record<Category["group"], { hex: string; ratio: string }> = {
+  play: { hex: "#1A5FB4", ratio: "5.8:1" },
+  fitness: { hex: "#B3121B", ratio: "6.4:1" },
+  sports: { hex: "#146B3A", ratio: "6.0:1" },
+  surfaces: { hex: "#8A5A00", ratio: "5.5:1" },
+};
+
+export function accentFor(slug: string) {
+  const c = CATEGORIES.find((x) => x.slug === slug);
+  return c ? GROUP_ACCENT[c.group].hex : "var(--ink)";
+}
+
 export const SITE = {
   legalName: "Khalsa Exports Private Limited",
   shortName: "Khalsa",

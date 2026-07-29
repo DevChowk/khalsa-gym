@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategories, getCategory, getProducts } from "@/lib/data";
+import { GROUP_ACCENT, getCategories, getCategory, getProducts } from "@/lib/data";
 import { ProductCard } from "@/components/product/ProductCard";
 
 type Props = { params: Promise<{ category: string }> };
@@ -57,6 +57,10 @@ export default async function CategoryPage({ params }: Props) {
         <span className="text-ink">{c.title}</span>
       </nav>
 
+      <span
+        className="mb-5 block h-1.5 w-14 rounded-full"
+        style={{ background: GROUP_ACCENT[c.group].hex }}
+      />
       <h1 className="t-h2 max-w-[16ch]">{c.title}</h1>
       <p className="t-body mt-5">{c.intro}</p>
       <p className="t-data mt-4 text-ink-mute">

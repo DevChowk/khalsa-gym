@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PRODUCTS, getProduct, getRelated, getCategory, SITE } from "@/lib/data";
+import { PRODUCTS, getProduct, getRelated, getCategory, accentFor, SITE } from "@/lib/data";
 import { ProductCard } from "@/components/product/ProductCard";
 import { AddToQuote } from "@/components/quote/QuoteTray";
 
@@ -110,7 +110,9 @@ export default async function ProductPage({ params }: Props) {
 
         {/* detail */}
         <div>
-          <p className="t-label">{cat?.title}</p>
+          <p className="t-label" style={{ color: accentFor(p.category) }}>
+            {cat?.title}
+          </p>
           <h1
             className="mt-3 uppercase"
             style={{
